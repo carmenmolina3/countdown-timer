@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>30-Second Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #timer {
+      font-size: 60px;
+      color: #333;
+      margin: 20px 0;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="timer">30:00</div>
+  <button onclick="startTimer()">Start</button>
+  <button onclick="resetTimer()">Reset</button>
+
+  <script>
+    let timerInterval;
+    let timeRemaining = 30;
+
+    function updateTimerDisplay() {
+      const seconds = timeRemaining % 60;
+      document.getElementById('timer').textContent = `00:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timeRemaining = 30;
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          alert("Time's up!");
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timeRemaining = 30;
+      updateTimerDisplay();
+    }
+  </script>
+</body>
+</html>
